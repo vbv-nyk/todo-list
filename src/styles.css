@@ -5,8 +5,11 @@
 .body{
     display: grid;
     height: 100vh;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: max(350px,28%) auto;
     grid-template-rows: max-content max-content ;
+    gap: 15px;
+    background-color: rgb(46, 43, 43);
+
 }
 
 .top-bar{
@@ -17,6 +20,7 @@
     font-weight: bolder;
     background-color: rgb(46, 43, 43);
     display: grid;
+    gap: 15px;
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content;
 }
@@ -27,6 +31,8 @@
 }
 
 .top-bar .tab-bar{
+    width: 90%;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
 }
@@ -37,7 +43,7 @@
 .tab-bar .tab-item, .add-tab{
     background-color: rgb(65, 62, 62);
     text-align: center;
-    padding: 5px 10px;
+    padding: 10px;
     border-left: 1px rgb(90, 85, 85) solid;
 }
 
@@ -50,7 +56,7 @@
     grid-template-columns: 1/2;
     grid-row: 3/4;
     height: 100%;
-    background-color: rgb(51, 47, 47);
+    background-color: rgb(46, 43, 43);
 }
 
 .side-bar .name{
@@ -77,16 +83,18 @@
 
 
 .main-container{
+    margin: 30px;
     grid-row: 3/4;
     grid-column: 2/3;
     background-color: rgb(65, 62, 62);    
     display: grid;
     grid-template-rows: max-content auto;
+    margin-left: 0;
+    margin-top: 0;
 }
 
 .main-container .work-name{
-    background-color: rgb(51, 47, 47);
-
+    background-color: rgb(46, 43, 43);
     text-align: center;
     color: white;
     font-weight: bold;
