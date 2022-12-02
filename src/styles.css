@@ -3,10 +3,10 @@
     margin: 0;
 }
 .body{
-    height: 100vh;
     display: grid;
+    height: 100vh;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: max-content max-content auto;
+    grid-template-rows: max-content max-content ;
 }
 
 .top-bar{
@@ -27,45 +27,66 @@
 }
 
 .top-bar .tab-bar{
-    display: flex;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
 }
 
 .tab-container{
     grid-row: 2/3;
-    display: flex;
 }
 .tab-bar .tab-item, .add-tab{
-    display: flex;
     background-color: rgb(65, 62, 62);
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     padding: 5px 10px;
     border-left: 1px rgb(90, 85, 85) solid;
 }
 
+.tab-bar .add-tab{
+    grid-column: -1/-2;
+    grid-row: -1/-2;
+}
 
 .side-bar{
     grid-template-columns: 1/2;
     grid-row: 3/4;
+    height: 100%;
     background-color: rgb(51, 47, 47);
+}
+
+.side-bar .name{
     color: white;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    padding: 15px;
+    padding: 20px;
 }
+
+.side-bar .work-container,.add-todo{
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.work-container .todo-item{
+    padding: 20px 0px;
+    width: 80%;    
+    background-color: rgb(65, 62, 62);    
+    margin: auto;
+}
+
 
 .main-container{
     grid-row: 3/4;
     grid-column: 2/3;
+    background-color: rgb(65, 62, 62);    
     display: grid;
     grid-template-rows: max-content auto;
-
 }
 
 .main-container .work-name{
-    background-color:rgb(78, 85, 83) ;
+    background-color: rgb(51, 47, 47);
+
     text-align: center;
     color: white;
     font-weight: bold;
