@@ -2,14 +2,20 @@
     padding: 0;
     margin: 0;
 }
+body{
+    background-color: rgb(46, 43, 43);
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 0px;
+}
+
 .body{
     display: grid;
-    height: 100vh;
     grid-template-columns: max(350px,28%) auto;
-    grid-template-rows: max-content max-content ;
+    grid-template-rows: max-content max-content auto;
     gap: 15px;
-    background-color: rgb(46, 43, 43);
-
 }
 
 .top-bar{
@@ -83,14 +89,12 @@
 
 
 .main-container{
-    margin: 30px;
     grid-row: 3/4;
+    margin: 30px;
     grid-column: 2/3;
     background-color: rgb(65, 62, 62);    
     display: grid;
     grid-template-rows: max-content auto;
-    margin-left: 0;
-    margin-top: 0;
 }
 
 .main-container .work-name{
