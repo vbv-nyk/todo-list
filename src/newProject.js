@@ -3,7 +3,7 @@
 import init, { changeProject } from "./init";
 
 export default function Project(name,count){
-    let todos = ['New Todo'];
+    let todos = ['Todo'];
     const workName = document.querySelector(".work-name");
     const workContainer = document.querySelector(".work-container");
     const tabBar = document.querySelector(".tab-bar");
@@ -21,7 +21,7 @@ export default function Project(name,count){
         }
         for(let todoName of todos){
             const todo = document.createElement("div");
-            todo.textContent = `${cur}. ${todoName}`;
+            todo.textContent = `${todoName} ${cur}`;
             workContainer.appendChild(todo);
             todo.classList.add("todo-item");
             cur++;

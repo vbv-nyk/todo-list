@@ -17,9 +17,7 @@ export default function init(){
         curCount = count;
     });    
     addTodo.addEventListener("click",()=>{
-        console.log(curCount);
-        console.log(projects);
-        projects[curCount].addTodo(`New Todo`);
+        projects[curCount].addTodo(`Todo`);
         projects[curCount].loadTodos();
     }); 
 } 
