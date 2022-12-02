@@ -1,2 +1,4 @@
+import init from './init';
 import './styles.css';
-console.log("Hello");
+    
+init();
