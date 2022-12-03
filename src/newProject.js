@@ -4,9 +4,9 @@ import init, { changeProject } from "./init";
 
 export default function Project(name,count){
     let todo = {
-        name:"Todo",
-        desc:"Click To Edit The Description",
-        deadline:"10/10/2010",
+        name:"Todo 1",
+        desc:"",
+        deadline:"",
         done:false,
     }
     let todos = [todo];
@@ -34,17 +34,34 @@ export default function Project(name,count){
             const todoContainer = document.createElement("div");
             const todoName = document.createElement("input");
             todoName.value = `${todo.name}`;
-            
+            todoName.addEventListener("change",()=>{
+                if(todoName.value){
+                    todo.name = todoName.value;
+                }else{
+                    alert("Name cannot be empty");
+                }
+            })
+
             const todoDesc = document.createElement("input");
             todoDesc.value = `${todo.desc}`;
+            todoDesc.placeholder = `Click to Enter a description`;  
+            todoDesc.addEventListener("change",()=>{
+                todo.desc = todoDesc.value;
+            });
 
             const todoDeadline = document.createElement("input");
             todoDeadline.type = "date";
-            todoDeadline.textContent = `${todo.deadline}`;
+            todoDeadline.value = `${todo.deadline}`;
+            todoDeadline.addEventListener("change",()=>{
+                todo.deadline = todoDeadline.value;
+            });
 
             const todoDone = document.createElement("input");
             todoDone.type = "checkbox";
-            todoDone.value = false;
+            todoDone.checked = todo.done;
+            todoDone.addEventListener("change",()=>{
+                todo.done = todoDone.checked;
+            });
 
             const removeButton = document.createElement("button");
             removeButton.textContent = "X";

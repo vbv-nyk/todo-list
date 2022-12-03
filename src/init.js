@@ -1,16 +1,17 @@
 import Project from "./newProject";
 let curCount = 0;
+let projects = [];
 const addTodo = document.querySelector(".add-todo");
+const mainContentName = document.querySelector(".main-content .name");
 
 export default function init(){
     const addTab = document.querySelector(".add-tab");
     const todoContainer = document.querySelector(".todo-container");
     let count = 0;
-    let project = new Project("Project 1",0);
-    let projects = [];
-    projects[0] = project;
+    let project = new Project("Project 1",count);
+    projects[count] = project;
+    mainContentName.textContent = projects[count].name;
     project.loadTodos();
-
     addTab.addEventListener("click",()=>{
         count++;
         project = new Project(`Project ${count + 1}`,count);
@@ -31,10 +32,8 @@ export default function init(){
         todoDesc.placeholder = "Enter Your Todo Description";
         todoDesc.rows = 1;
 
-        const deadline = document.createElement("input");
-        deadline.type = "date";
-
-        
+        const todoDeadline = document.createElement("input");
+        todoDeadline.type = "date";
 
         const submitTodo = document.createElement("button");
         submitTodo.textContent = "Add";
@@ -42,15 +41,16 @@ export default function init(){
             let todo = {
                 name : todoName.value,
                 desc : todoDesc.value,
-                deadline : deadline.value,
+                deadline : todoDeadline.value,
             }
-            if(todo.name && todo.desc){
+            if(todo.name){
                 projects[curCount].addTodo(todo);
                 addTodo.style.display = "block";
+            }else{
+                alert("Name cannot be empty");
             }
-
         })
-        newTodoForm.append(todoName,todoDesc,deadline,submitTodo);
+        newTodoForm.append(todoName,todoDesc,todoDeadline,submitTodo);
         newTodoForm.classList.add("todo-item"); 
         newTodoForm.classList.add("todo-form-item");
         todoContainer.append(newTodoForm);
@@ -59,5 +59,6 @@ export default function init(){
 
 export function changeProject(e){
     curCount = e.target.dataset.count;
+    mainContentName.textContent = projects[curCount].name;
     addTodo.style.display = "block";
 }
