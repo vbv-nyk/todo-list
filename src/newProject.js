@@ -19,17 +19,21 @@ export default function Project(name,count){
         todos.push(todo);
         loadTodos();  
     }   
+    
+    function removeTodo(todoContainer,cur){
+            todoContainer.remove();
+            todos = todos.splice(cur,1);
+    }
 
     function loadTodos(){
-        let cur = 1;
         while(workContainer.firstElementChild){
             workContainer.firstElementChild.remove();
         }
         for(let todo of todos){
-            console.log(todo);
+            let cur = 0;
             const todoContainer = document.createElement("div");
             const todoName = document.createElement("div");
-            todoName.textContent = `${cur}. ${todo.name}`;
+            todoName.textContent = `${todo.name}`;
             
             const todoDesc = document.createElement("div");
             todoDesc.textContent = `${todo.desc}`;
@@ -41,7 +45,11 @@ export default function Project(name,count){
             todoDone.type = "checkbox";
             todoDone.value = false;
 
-            todoContainer.append(todoName,todoDesc,todoDeadline,todoDone);
+            const removeButton = document.createElement("button");
+            removeButton.addEventListener("click",()=>{
+                removeTodo(todoContainer,cur);
+            })
+            todoContainer.append(todoName,todoDesc,todoDeadline,todoDone,removeButton);
             workContainer.append(todoContainer);
             todoContainer.classList.add("todo-item");
             cur++;

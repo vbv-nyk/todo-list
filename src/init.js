@@ -14,7 +14,6 @@ export default function init(){
         count++;
         project = new Project(`Project ${count + 1}`,count);
         projects[count] = project; 
-        projects[count].loadTodos();
         curCount = count;
     });    
     addTodo.addEventListener("click",()=>{
@@ -41,7 +40,9 @@ export default function init(){
                 desc : todoDesc.value,
                 deadline : deadline.value,
             }
-            projects[curCount].addTodo(todo);
+            if(todo.name && todo.desc && todo.deadline){
+                projects[curCount].addTodo(todo);
+            }
         })
         newTodoForm.append(todoName,todoDesc,deadline,submitTodo);
         newTodoForm.classList.add("todo-item"); 
