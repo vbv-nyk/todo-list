@@ -1,22 +1,26 @@
 import Project from "./newProject";
 let curCount = 0;
+const addTodo = document.querySelector(".add-todo");
 
 export default function init(){
     const addTab = document.querySelector(".add-tab");
-    const addTodo = document.querySelector(".add-todo");
     const todoContainer = document.querySelector(".todo-container");
     let count = 0;
     let project = new Project("Project 1",0);
     let projects = [];
     projects[0] = project;
     project.loadTodos();
+
     addTab.addEventListener("click",()=>{
         count++;
         project = new Project(`Project ${count + 1}`,count);
         projects[count] = project; 
         curCount = count;
     });    
+
     addTodo.addEventListener("click",()=>{
+        addTodo.style.display = "none";
+
         const newTodoForm = document.createElement("div");
 
         const todoName = document.createElement("input");
@@ -42,7 +46,9 @@ export default function init(){
             }
             if(todo.name && todo.desc && todo.deadline){
                 projects[curCount].addTodo(todo);
+                addTodo.style.display = "block";
             }
+
         })
         newTodoForm.append(todoName,todoDesc,deadline,submitTodo);
         newTodoForm.classList.add("todo-item"); 
@@ -53,4 +59,5 @@ export default function init(){
 
 export function changeProject(e){
     curCount = e.target.dataset.count;
+    addTodo.style.display = "block";
 }

@@ -46,6 +46,11 @@ export default function Project(name,count){
             todoDone.value = false;
 
             const removeButton = document.createElement("button");
+            removeButton.textContent = "X";
+            removeButton.style.padding = "0px";
+            removeButton.style.border = "none";
+            removeButton.style.color = "red";
+            removeButton.style.fontWeight = "bolder";
             removeButton.addEventListener("click",()=>{
                 removeTodo(todoContainer,cur);
             })
