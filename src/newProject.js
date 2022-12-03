@@ -35,8 +35,12 @@ export default function Project(name,count){
             const todoName = document.createElement("input");
             todoName.value = `${todo.name}`;
             todoName.addEventListener("change",()=>{
-                if(todoName.value){
+                if(localStorage.getItem(`${name} ${todoName.value}`)){
+                    alert("Can't have 2 todos with the same name");
+                    todoName.value = todo.name;
+                }else if(todoName.value){
                     todo.name = todoName.value;
+                    updateLocalStorage(todo);
                 }else{
                     alert("Name cannot be empty");
                 }
@@ -46,7 +50,9 @@ export default function Project(name,count){
             todoDesc.value = `${todo.desc}`;
             todoDesc.placeholder = `Click to Enter a description`;  
             todoDesc.addEventListener("change",()=>{
+                removeFromLocalStorage(todo);
                 todo.desc = todoDesc.value;
+                updateLocalStorage(todo);
             });
 
             const todoDeadline = document.createElement("input");
@@ -54,6 +60,7 @@ export default function Project(name,count){
             todoDeadline.value = `${todo.deadline}`;
             todoDeadline.addEventListener("change",()=>{
                 todo.deadline = todoDeadline.value;
+                updateLocalStorage(todo);
             });
 
             const todoDone = document.createElement("input");
@@ -61,6 +68,7 @@ export default function Project(name,count){
             todoDone.checked = todo.done;
             todoDone.addEventListener("change",()=>{
                 todo.done = todoDone.checked;
+                updateLocalStorage(todo);
             });
 
             const removeButton = document.createElement("button");
@@ -70,6 +78,7 @@ export default function Project(name,count){
             removeButton.style.color = "red";
             removeButton.style.fontWeight = "bolder";
             removeButton.addEventListener("click",()=>{
+                removeFromLocalStorage(todo);
                 removeTodo(todoContainer,cur);
             })
 
@@ -77,6 +86,8 @@ export default function Project(name,count){
             workContainer.append(todoContainer);
             todoContainer.classList.add("todo-item");
             cur++;
+            
+            updateLocalStorage(todo);
         }
     }
     const loadProject = (function (){
@@ -90,5 +101,14 @@ export default function Project(name,count){
         tabBar.appendChild(newTab);
     })();
 
+    function updateLocalStorage(todo){
+        localStorage.setItem(`${name} ${todo.name}`,JSON.stringify(todo));
+        console.log(JSON.parse(localStorage.getItem(`${name} ${todo.name}`)));   
+    }
+
+    function removeFromLocalStorage(todo){
+        localStorage.removeItem(`${name} ${todo.name}`);
+        console.log(JSON.parse(localStorage.getItem(`${name} ${todo.name}`)));
+    }
     return {addTodo,loadTodos,name};
 }

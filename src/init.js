@@ -23,7 +23,6 @@ export default function init(){
         addTodo.style.display = "none";
 
         const newTodoForm = document.createElement("div");
-
         const todoName = document.createElement("input");
         todoName.type = "text";
         todoName.placeholder = "Todo Name";
@@ -43,7 +42,10 @@ export default function init(){
                 desc : todoDesc.value,
                 deadline : todoDeadline.value,
             }
-            if(todo.name){
+            if(localStorage.getItem(`${projects[curCount].name} ${todo.name}`)){
+                alert("Can't have 2 todos with the same name");
+                todoName.value = "";
+            }else if(todo.name){
                 projects[curCount].addTodo(todo);
                 addTodo.style.display = "block";
             }else{
@@ -54,6 +56,7 @@ export default function init(){
         newTodoForm.classList.add("todo-item"); 
         newTodoForm.classList.add("todo-form-item");
         todoContainer.append(newTodoForm);
+
     }); 
 } 
 
