@@ -82,7 +82,7 @@ export default function init(){
 
     const tabItems = document.querySelectorAll(".tab-bar .tab-item");
     for(let tabItem of tabItems){
-        tabItem.addEventListener("change",()=>{
+        tabItem.addEventListener("input",()=>{
             if(tabItem.value){
                 projects[curCount].name = tabItem.value;
                 mainContentName.textContent = tabItem.value;

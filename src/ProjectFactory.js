@@ -35,7 +35,7 @@ export default function Project(name,count){
             const todoContainer = document.createElement("div");
             const todoName = document.createElement("input");
             todoName.value = `${todo.name}`;
-            todoName.addEventListener("change",()=>{
+            todoName.addEventListener("input",()=>{
                 if(localStorage.getItem(`${name} ${todoName.value}`)){
                     alert("Can't have 2 todos with the same name");
                     todoName.value = todo.name;
@@ -51,7 +51,7 @@ export default function Project(name,count){
             const todoDesc = document.createElement("input");
             todoDesc.value = `${todo.desc}`;
             todoDesc.placeholder = `Click to Enter a description`;  
-            todoDesc.addEventListener("change",()=>{
+            todoDesc.addEventListener("input",()=>{
                 todo.desc = todoDesc.value;
                 updateLocalStorage(todos);
             });
@@ -59,7 +59,7 @@ export default function Project(name,count){
             const todoDeadline = document.createElement("input");
             todoDeadline.type = "date";
             todoDeadline.value = `${todo.deadline}`;
-            todoDeadline.addEventListener("change",()=>{
+            todoDeadline.addEventListener("input",()=>{
                 todo.deadline = todoDeadline.value;
                 updateLocalStorage(todos);
             });
@@ -67,7 +67,7 @@ export default function Project(name,count){
             const todoDone = document.createElement("input");
             todoDone.type = "checkbox";
             todoDone.checked = todo.done;
-            todoDone.addEventListener("change",()=>{
+            todoDone.addEventListener("input",()=>{
                 todo.done = todoDone.checked;
                 updateLocalStorage(todos);
             });
