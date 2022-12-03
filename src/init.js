@@ -1,4 +1,4 @@
-import Project from "./newProject";
+import Project from "./ProjectFactory";
 let curCount = 0;
 let projects = [];
 const addTodo = document.querySelector(".add-todo");
@@ -56,7 +56,6 @@ export default function init(){
         newTodoForm.classList.add("todo-item"); 
         newTodoForm.classList.add("todo-form-item");
         todoContainer.append(newTodoForm);
-
     }); 
 } 
 
