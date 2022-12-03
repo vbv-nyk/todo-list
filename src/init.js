@@ -16,6 +16,7 @@ export default function init(){
         count++;
         project = new Project(`Project ${count + 1}`,count);
         projects[count] = project; 
+        projects[count].updateLocalStorage();
         curCount = count;
     });    
 

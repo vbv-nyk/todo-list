@@ -108,5 +108,5 @@ export default function Project(name,count){
         console.table(JSON.parse(localStorage.getItem(`projects`)));
     }
 
-    return {addTodo,loadTodos,name,todos};
+    return {addTodo,loadTodos,name,todos,updateLocalStorage};
 }
