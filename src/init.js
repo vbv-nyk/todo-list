@@ -68,7 +68,6 @@ export default function init(){
             }
             if(todo.name){
                 projects[curCount].addTodo(todo);
-                console.log(projects);
                 addTodo.style.display = "block";
             }else{
                 alert("Name cannot be empty");
@@ -80,6 +79,20 @@ export default function init(){
         todoContainer.append(newTodoForm);
 
     }); 
+
+    const tabItems = document.querySelectorAll(".tab-bar .tab-item");
+    for(let tabItem of tabItems){
+        tabItem.addEventListener("change",()=>{
+            if(tabItem.value){
+                projects[curCount].name = tabItem.value;
+                mainContentName.textContent = tabItem.value;
+                projects[curCount].updateLocalStorage();
+            }else{
+                alert("Name can't be empty");
+                tabItem.value = name;
+            }
+        });
+    }
 } 
 
 export function changeProject(e){

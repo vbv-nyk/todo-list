@@ -10,7 +10,7 @@ export default function Project(name,count){
         done:false,
     }
     let todos = [todo];
-    const workName = document.querySelector(".work-name");
+    const workName = document.querySelector(".main-content .name");
     const workContainer = document.querySelector(".todo-container");
     const tabBar = document.querySelector(".tab-bar");
     const newTab = document.createElement("input");
@@ -98,8 +98,7 @@ export default function Project(name,count){
             changeProject(e);
             loadTodos();
         });
-        newTab.addEventListener("change",()=>{
-        });
+       
         tabBar.appendChild(newTab);
     })();
 
