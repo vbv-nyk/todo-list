@@ -1,4 +1,4 @@
-import init from './init';
+import init, { projects } from './init';
 import './styles.css';
 
 init();

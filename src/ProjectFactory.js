@@ -14,7 +14,7 @@ export default function Project(name,count){
     const workContainer = document.querySelector(".todo-container");
     const tabBar = document.querySelector(".tab-bar");
     const newTab = document.createElement("input");
-
+    
     function addTodo(todo){
         todos.push(todo);
         loadTodos();  
@@ -105,8 +105,8 @@ export default function Project(name,count){
 
     function updateLocalStorage(){
         localStorage.setItem(`projects`,JSON.stringify(projects));
-        console.table(JSON.parse(localStorage.getItem(`projects`)));
+        // console.log(JSON.parse(localStorage.getItem(`projects`)));
     }
 
-    return {addTodo,loadTodos,name,todos,updateLocalStorage};
+    return {addTodo,loadTodos,name,todos,updateLocalStorage,count};
 }

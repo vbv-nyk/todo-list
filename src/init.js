@@ -8,17 +8,41 @@ export default function init(){
     const addTab = document.querySelector(".add-tab");
     const todoContainer = document.querySelector(".todo-container");
     let count = 0;
-    let project = new Project("Project 1",count);
-    projects[count] = project;
-    mainContentName.textContent = projects[count].name;
-    project.loadTodos();
+    let project;
+      
+
+    if(localStorage.getItem("projects")){
+        let tempProjects = JSON.parse(localStorage.getItem("projects"));
+        console.log(projects);
+        let i;
+        for(i in tempProjects){
+            let tempProject = new Project(tempProjects[i].name,tempProjects[i].count);
+            tempProject.name = tempProjects[i]. name;
+            while(tempProject.todos.length != 0){
+                tempProject.todos.pop();
+            }
+            for(let todo of tempProjects[i].todos){
+                tempProject.todos.push(todo);
+            }
+            projects[i] = tempProject;
+            count = i;
+        }
+        projects[0].loadTodos();
+        mainContentName.textContent = projects[0].name;
+    }else{ 
+        project = new Project("Project 1",count);
+        projects[count] = project;
+        mainContentName.textContent = projects[count].name;
+        project.loadTodos();
+        curCount = count;
+    }
+
     addTab.addEventListener("click",()=>{
         count++;
-        project = new Project(`Project ${count + 1}`,count);
+        project = new Project(`Project ${count+1}`,count);
         projects[count] = project; 
         projects[count].updateLocalStorage();
-        curCount = count;
-    });    
+    }); 
 
     addTodo.addEventListener("click",()=>{
         addTodo.style.display = "none";
@@ -42,11 +66,9 @@ export default function init(){
                 desc : todoDesc.value,
                 deadline : todoDeadline.value,
             }
-            if(localStorage.getItem(`${projects[curCount].name} ${todo.name}`)){
-                alert("Can't have 2 todos with the same name");
-                todoName.value = "";
-            }else if(todo.name){
+            if(todo.name){
                 projects[curCount].addTodo(todo);
+                console.log(projects);
                 addTodo.style.display = "block";
             }else{
                 alert("Name cannot be empty");
@@ -56,6 +78,7 @@ export default function init(){
         newTodoForm.classList.add("todo-item"); 
         newTodoForm.classList.add("todo-form-item");
         todoContainer.append(newTodoForm);
+
     }); 
 } 
 
