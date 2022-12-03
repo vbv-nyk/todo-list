@@ -3,14 +3,20 @@
 import init, { changeProject } from "./init";
 
 export default function Project(name,count){
-    let todos = ['Todo'];
+    let todo = {
+        name:"Todo",
+        desc:"Click To Edit The Description",
+        deadline:"1/1/1",
+        done:false,
+    }
+    let todos = [todo];
     const workName = document.querySelector(".work-name");
     const workContainer = document.querySelector(".todo-container");
     const tabBar = document.querySelector(".tab-bar");
     const newTab = document.createElement("div");
 
-    function addTodo(todoName){
-        todos.push(todoName); 
+    function addTodo(todo){
+        todos.push(todo);
         loadTodos();  
     }   
 
@@ -19,11 +25,25 @@ export default function Project(name,count){
         while(workContainer.firstElementChild){
             workContainer.firstElementChild.remove();
         }
-        for(let todoName of todos){
-            const todo = document.createElement("div");
-            todo.textContent = `${todoName} ${cur}`;
-            workContainer.appendChild(todo);
-            todo.classList.add("todo-item");
+        for(let todo of todos){
+            console.log(todo);
+            const todoContainer = document.createElement("div");
+            const todoName = document.createElement("div");
+            todoName.textContent = `${cur}. ${todo.name}`;
+            
+            const todoDesc = document.createElement("div");
+            todoDesc.textContent = `${todo.desc}`;
+
+            const todoDeadline = document.createElement("div");
+            todoDeadline.textContent = `${todo.deadline}`;
+
+            const todoDone = document.createElement("input");
+            todoDone.type = "checkbox";
+            todoDone.value = false;
+
+            todoContainer.append(todoName,todoDesc,todoDeadline,todoDone);
+            workContainer.append(todoContainer);
+            todoContainer.classList.add("todo-item");
             cur++;
         }
     }

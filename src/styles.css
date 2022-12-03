@@ -84,10 +84,14 @@ body{
 }
 
 .todo-container .todo-item{
-    padding: 10px;
+    padding: 15px;
     width: 80%;    
     background-color: rgb(65, 62, 62);    
     margin: auto;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 20px;
 }
 
 .todo-container .todo-item input, .todo-container textarea,button{
@@ -97,14 +101,9 @@ body{
     border: 2px solid rgb(129, 125, 125);
     height: max-content;
     padding: 10px;
+
 }
 
 .todo-container .todo-item input:focus, .todo-container textarea:focus{
    outline: none;
-}
-
-.todo-container .todo-form-item{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
 }

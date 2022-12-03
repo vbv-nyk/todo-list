@@ -18,19 +18,33 @@ export default function init(){
         curCount = count;
     });    
     addTodo.addEventListener("click",()=>{
-        const todoName = document.createElement("input");
         const newTodoForm = document.createElement("div");
+
+        const todoName = document.createElement("input");
         todoName.type = "text";
-        todoName.value = "Todo Name";
+        todoName.placeholder = "Todo Name";
+
         const todoDesc = document.createElement("textarea");
-        todoDesc.value = "Enter Your Todo Description";
+        todoDesc.placeholder = "Enter Your Todo Description";
         todoDesc.rows = 1;
+
         const deadline = document.createElement("input");
         deadline.type = "date";
+
+        
+
         const submitTodo = document.createElement("button");
         submitTodo.textContent = "Add";
+        submitTodo.addEventListener("click",()=>{
+            let todo = {
+                name : todoName.value,
+                desc : todoDesc.value,
+                deadline : deadline.value,
+            }
+            projects[curCount].addTodo(todo);
+        })
         newTodoForm.append(todoName,todoDesc,deadline,submitTodo);
-        newTodoForm.classList.add("todo-item");
+        newTodoForm.classList.add("todo-item"); 
         newTodoForm.classList.add("todo-form-item");
         todoContainer.append(newTodoForm);
     }); 
