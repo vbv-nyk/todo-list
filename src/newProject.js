@@ -5,7 +5,7 @@ import init, { changeProject } from "./init";
 export default function Project(name,count){
     let todos = ['Todo'];
     const workName = document.querySelector(".work-name");
-    const workContainer = document.querySelector(".work-container");
+    const workContainer = document.querySelector(".todo-container");
     const tabBar = document.querySelector(".tab-bar");
     const newTab = document.createElement("div");
 
@@ -28,13 +28,11 @@ export default function Project(name,count){
         }
     }
     const loadProject = (function (){
-        workName.textContent = name;
         newTab.textContent = name;
         newTab.classList.add("tab-item");
         newTab.setAttribute("data-count",count);
         newTab.addEventListener("click",(e)=>{
             changeProject(e);
-            workName.textContent = name;
             loadTodos();
         })
         tabBar.appendChild(newTab);

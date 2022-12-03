@@ -4,6 +4,7 @@ let curCount = 0;
 export default function init(){
     const addTab = document.querySelector(".add-tab");
     const addTodo = document.querySelector(".add-todo");
+    const todoContainer = document.querySelector(".todo-container");
     let count = 0;
     let project = new Project("Project 1",0);
     let projects = [];
@@ -17,8 +18,21 @@ export default function init(){
         curCount = count;
     });    
     addTodo.addEventListener("click",()=>{
-        projects[curCount].addTodo(`Todo`);
-        projects[curCount].loadTodos();
+        const todoName = document.createElement("input");
+        const newTodoForm = document.createElement("div");
+        todoName.type = "text";
+        todoName.value = "Todo Name";
+        const todoDesc = document.createElement("textarea");
+        todoDesc.value = "Enter Your Todo Description";
+        todoDesc.rows = 1;
+        const deadline = document.createElement("input");
+        deadline.type = "date";
+        const submitTodo = document.createElement("button");
+        submitTodo.textContent = "Add";
+        newTodoForm.append(todoName,todoDesc,deadline,submitTodo);
+        newTodoForm.classList.add("todo-item");
+        newTodoForm.classList.add("todo-form-item");
+        todoContainer.append(newTodoForm);
     }); 
 } 
 

@@ -52,7 +52,6 @@ body{
     padding: 10px;
     border-left: 1px rgb(90, 85, 85) solid;
     text-overflow: ellipsis;
-    
     overflow: hidden;
 }
 
@@ -61,14 +60,15 @@ body{
     grid-row: -1/-2;
 }
 
-.side-bar{
+.main-content{
     grid-template-columns: 1/2;
     grid-row: 3/4;
+    grid-column: 1/3;
     height: max-content;
     background-color: rgb(46, 43, 43);
 }
 
-.side-bar .name{
+.main-content .name{
     color: white;
     text-align: center;
     font-size: 20px;
@@ -76,36 +76,35 @@ body{
     padding: 20px;
 }
 
-.side-bar .work-container,.add-todo{
+.main-content .todo-container,.add-todo{
     color: white;
     font-weight: 700;
     text-align: center;
-    padding: 10px 0px;
+    padding: 10px;
 }
 
-.work-container .todo-item{
-    padding: 20px 0px;
+.todo-container .todo-item{
+    padding: 10px;
     width: 80%;    
     background-color: rgb(65, 62, 62);    
     margin: auto;
 }
 
-
-.main-container{
+.todo-container .todo-item input, .todo-container textarea,button{
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: 2px solid rgb(129, 125, 125);
     height: max-content;
-    grid-row: 3/4;
-    margin: 30px;
-    grid-column: 2/3;
-    background-color: rgb(65, 62, 62);    
-    display: grid;
-    grid-template-rows: max-content auto;
+    padding: 10px;
 }
 
-.main-container .work-name{
-    background-color: rgb(46, 43, 43);
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: x-large;
-    padding: 10px;
+.todo-container .todo-item input:focus, .todo-container textarea:focus{
+   outline: none;
+}
+
+.todo-container .todo-form-item{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
