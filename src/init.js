@@ -1,6 +1,6 @@
 import Project from "./ProjectFactory";
 let curCount = 0;
-let projects = [];
+export let projects = {};
 const addTodo = document.querySelector(".add-todo");
 const mainContentName = document.querySelector(".main-content .name");
 
@@ -21,7 +21,6 @@ export default function init(){
 
     addTodo.addEventListener("click",()=>{
         addTodo.style.display = "none";
-
         const newTodoForm = document.createElement("div");
         const todoName = document.createElement("input");
         todoName.type = "text";

@@ -53,6 +53,13 @@ body{
     border-left: 1px rgb(90, 85, 85) solid;
     text-overflow: ellipsis;
     overflow: hidden;
+    color: white;
+    font-weight: bolder;
+    border: none;
+}
+
+.tab-bar .tab-item:focus{
+    outline: none;
 }
 
 .tab-bar .add-tab{
