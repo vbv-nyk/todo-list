@@ -6,7 +6,7 @@ export default function Project(name,count){
     let todo = {
         name:"Todo",
         desc:"Click To Edit The Description",
-        deadline:"1/1/1",
+        deadline:"10/10/2010",
         done:false,
     }
     let todos = [todo];
@@ -32,13 +32,14 @@ export default function Project(name,count){
         for(let todo of todos){
             let cur = 0;
             const todoContainer = document.createElement("div");
-            const todoName = document.createElement("div");
-            todoName.textContent = `${todo.name}`;
+            const todoName = document.createElement("input");
+            todoName.value = `${todo.name}`;
             
-            const todoDesc = document.createElement("div");
-            todoDesc.textContent = `${todo.desc}`;
+            const todoDesc = document.createElement("input");
+            todoDesc.value = `${todo.desc}`;
 
-            const todoDeadline = document.createElement("div");
+            const todoDeadline = document.createElement("input");
+            todoDeadline.type = "date";
             todoDeadline.textContent = `${todo.deadline}`;
 
             const todoDone = document.createElement("input");
@@ -54,6 +55,7 @@ export default function Project(name,count){
             removeButton.addEventListener("click",()=>{
                 removeTodo(todoContainer,cur);
             })
+
             todoContainer.append(todoName,todoDesc,todoDeadline,todoDone,removeButton);
             workContainer.append(todoContainer);
             todoContainer.classList.add("todo-item");

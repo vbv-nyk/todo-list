@@ -44,7 +44,7 @@ export default function init(){
                 desc : todoDesc.value,
                 deadline : deadline.value,
             }
-            if(todo.name && todo.desc && todo.deadline){
+            if(todo.name && todo.desc){
                 projects[curCount].addTodo(todo);
                 addTodo.style.display = "block";
             }
