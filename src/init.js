@@ -1,6 +1,6 @@
 import Project from "./ProjectFactory";
 let curCount = 0;
-export let projects = {};
+export let projects = [];
 const addTodo = document.querySelector(".add-todo");
 const mainContentName = document.querySelector(".main-content .name");
 
@@ -13,10 +13,14 @@ export default function init(){
 
     if(localStorage.getItem("projects")){
         let tempProjects = JSON.parse(localStorage.getItem("projects"));
+        if(tempProjects.length == 0){
+            localStorage.clear();
+            location.reload();
+        }
         console.log(projects);
         let i;
         for(i in tempProjects){
-            let tempProject = new Project(tempProjects[i].name,tempProjects[i].count);
+            let tempProject = new Project(tempProjects[i].name,i);
             tempProject.name = tempProjects[i]. name;
             while(tempProject.todos.length != 0){
                 tempProject.todos.pop();
@@ -97,6 +101,8 @@ export default function init(){
 
 export function changeProject(e){
     curCount = e.target.dataset.count;
-    mainContentName.textContent = projects[curCount].name;
+    if(e.target.value){
+        mainContentName.textContent = e.target.value;
+    }
     addTodo.style.display = "block";
 }

@@ -95,11 +95,23 @@ export default function Project(name,count){
         newTab.value = name;
         newTab.classList.add("tab-item");
         newTab.setAttribute("data-count",count);
+        newTab.addEventListener("change",(e)=>{
+            if(e.target.value){
+                workName.textContent = e.target.value;
+                updateLocalStorage();
+            }
+        });
         newTab.addEventListener("click",(e)=>{
             changeProject(e);
             loadTodos();
         });
        
+        newTab.addEventListener("dblclick",()=>{
+            newTab.remove();
+            projects.splice(count,1);
+            updateLocalStorage();
+            location.reload();
+        })
         tabBar.appendChild(newTab);
     })();
 
