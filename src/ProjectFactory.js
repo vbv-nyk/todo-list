@@ -20,18 +20,18 @@ export default function Project(name,count){
         loadTodos();  
     }   
     
-    function removeTodo(todoContainer,cur){
-            todoContainer.remove();
-            todos = todos.splice(cur,1);
-            updateLocalStorage(todos);
+    function removeTodo(e){
+        todos.splice(e.target.dataset.pos,1);
+        loadTodos();
+        updateLocalStorage(todos);
     }
 
     function loadTodos(){
+        let cur = 0;
         while(workContainer.firstElementChild){
             workContainer.firstElementChild.remove();
         }
         for(let todo of todos){
-            let cur = 0;
             const todoContainer = document.createElement("div");
             const todoName = document.createElement("input");
             todoName.value = `${todo.name}`;
@@ -78,8 +78,9 @@ export default function Project(name,count){
             removeButton.style.border = "none";
             removeButton.style.color = "red";
             removeButton.style.fontWeight = "bolder";
-            removeButton.addEventListener("click",()=>{
-                removeTodo(todoContainer,cur);
+            removeButton.setAttribute("data-pos",cur);
+            removeButton.addEventListener("click",(e)=>{
+                removeTodo(e);
             })
 
             todoContainer.append(todoName,todoDesc,todoDeadline,todoDone,removeButton);
